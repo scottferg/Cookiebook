@@ -7,7 +7,7 @@
     var add_new_ingredient_field = function() {
         var html = "" +
             "<div class='form-field-wrapper'>" +
-            "    <input type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/images/icon_deletelink.gif' /></span>" +
+            "    <input type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/media/images/icon_deletelink.gif' /></span>" +
             "</div>";
         jQuery('div#ingredients-grouping').append(html);
     };
@@ -26,7 +26,7 @@
 
 {% block body %}
 <div id='recipe-change-form'>
-    <form action='/edit/{{ recipe.key }}/' method='post' enctype='multipart/form-data'>
+    <form action='{% url recipes.views.edit_recipe recipe.key %}' method='post' enctype='multipart/form-data'>
          <div id='recipe-info'>
             <div class='form-field-wrapper'>
                 <label for='id_title'>Title:</label>
@@ -51,11 +51,11 @@
             </div>
         </div>
         <div id='ingredients-fields'>
-            <label>Ingredients:</label><span class='ingredient-add-link'><img src='/images/icon_addlink.gif' /></span>
+            <label>Ingredients:</label><span class='ingredient-add-link'><img src='/media/images/icon_addlink.gif' /></span>
             <div id='ingredients-grouping'>
                 {% for ingredient in recipe.ingredient_set %}
                 <div class='form-field-wrapper'>
-                    <input class='ingredient-field' type='text' name='ingredient' value='{{ ingredient.description }}' /><span class='ingredient-delete-link'><img src='/images/icon_deletelink.gif' /></span>
+                    <input class='ingredient-field' type='text' name='ingredient' value='{{ ingredient.description }}' /><span class='ingredient-delete-link'><img src='/media/images/icon_deletelink.gif' /></span>
                 </div>
                 {% endfor %}
             </div>

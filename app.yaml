@@ -1,16 +1,18 @@
-application: cookie-book
-version: 1
+﻿application: cookie-book
+version: 2
 runtime: python
 api_version: 1
 
 handlers:
-- url: /css
-  static_dir: css
-- url: /js
-  static_dir: js
-- url: /images
-  static_dir: images
-- url: /api/.*
-  script: rpc_api.py
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  secure: optional
+  login: admin
+
+- url: /media
+  static_dir: media
+  secure: optional
+
 - url: /.*
-  script: cookiebook.py
+  script: common/appenginepatch/main.py
+  secure: optional

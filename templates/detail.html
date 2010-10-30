@@ -36,7 +36,7 @@
     <div style='clear: both;'></div>
     {% if show_edit_button %}
     <div class='add-recipe-button'>
-        <input type='button' value='Edit this recipe' onClick='location.href = "/edit/{{ recipe.key }}/"' />
+        <input type='button' value='Edit this recipe' onClick='location.href = "/recipe/{{ recipe.key }}/edit/"' />
     </div>
     {% endif %}
 </div>

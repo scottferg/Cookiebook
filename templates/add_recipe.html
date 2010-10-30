@@ -7,7 +7,7 @@
     var add_new_ingredient_field = function() {
         var html = "" +
             "<div class='form-field-wrapper'>" +
-            "    <input type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/images/icon_deletelink.gif' /></span>" +
+            "    <input type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/media/images/icon_deletelink.gif' /></span>" +
             "</div>";
         jQuery('div#ingredients-grouping').append(html);
     };
@@ -26,8 +26,8 @@
 
 {% block body %}
 <div id='recipe-change-form'>
-	<form action='/recipe/add/' method='post' enctype='multipart/form-data'>
-            {{ form.non_field_errors }}
+	<form action='{% url recipes.views.add_recipe %}' method='post' enctype='multipart/form-data'>
+         {{ form.non_field_errors }}
          <div id='recipe-info'>
             <div class='form-field-wrapper'>
                 {{ form.title.errors }}
@@ -55,16 +55,16 @@
             </div>
         </div>
         <div id='ingredients-fields'>
-            <label>Ingredients:</label><span class='ingredient-add-link'><img src='/images/icon_addlink.gif' /></span>
+            <label>Ingredients:</label><span class='ingredient-add-link'><img src='/media/images/icon_addlink.gif' /></span>
             <div id='ingredients-grouping'>
                 <div class='form-field-wrapper'>
-                    <input class='ingredient-field' type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/images/icon_deletelink.gif' /></span>
+                    <input class='ingredient-field' type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/media/images/icon_deletelink.gif' /></span>
                 </div>
                 <div class='form-field-wrapper'>
-                    <input class='ingredient-field' type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/images/icon_deletelink.gif' /></span>
+                    <input class='ingredient-field' type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/media/images/icon_deletelink.gif' /></span>
                 </div>
                 <div class='form-field-wrapper'>
-                    <input class='ingredient-field' type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/images/icon_deletelink.gif' /></span>
+                    <input class='ingredient-field' type='text' name='ingredient' placeholder='Enter an ingredient' /><span class='ingredient-delete-link'><img src='/media/images/icon_deletelink.gif' /></span>
                 </div>
             </div>
         </div>

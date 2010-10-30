@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Cookiebook - {{ recipe.title }}{% endblock %}
+
+{% block body %}
+<div id='recipe-detail'>
+    <h1>{{ recipe.title }}{% if recipe.picture and False %}<img id='recipe-image' src='/image?img_id={{ recipe.key }}' height="100" />{% endif %}</h1>
+    <div style='clear: both;'></div>
+    <div id='recipe-detail-body'>
+        <div id='recipe-detail-description'>
+            <div><label>Description:</label></div>
+            {{ recipe.description }}
+        </div>
+        <div id='recipe-detail-directions'>
+            <div><label>Directions:</label></div>
+            {{ recipe.directions }}
+        </div>
+    </div>
+    <div id='recipe-detail-ingredients'>
+        <h2>Ingredients</h2>
+        <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div style='clear: both;'></div>
+    <div class='add-recipe-button'>
+        <input type='button' value='Edit this recipe' onClick='location.href = "/edit/{{ recipe.key }}/"' />
+    </div>
+</div>
+{% endblock %}

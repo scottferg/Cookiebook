@@ -1,0 +1,153 @@
+body {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: .9em;
+    background-color: #fff;
+    margin: 0 auto;
+    width: 800px;
+}
+
+a {
+    color: #555;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+label {
+    color: #444;
+    font-weight: bold;
+}
+
+div#footer {
+    margin-top: 10px;
+    text-align: center;
+}
+
+div#header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+div.add-recipe-button {
+    width: 100%;
+    text-align: right;
+    margin-top: 6px;
+}
+
+table#recipe-list {
+    width: 100%;
+    margin-top: 6px;
+    color: #444;
+}
+
+table#recipe-list, td {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+table#recipe-list td {
+    padding: 6px;
+}
+
+div#recipe-change-form, div#recipe-detail {
+    width: 100%;
+    border: 2px solid #ccc;
+    padding: 10px;
+}
+
+span.ingredient-add-link, span.ingredient-delete-link {
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+div#recipe-info {
+    float: left;
+}
+
+div#ingredients-fields {
+    float: right;
+    width: 265px;
+    margin-bottom: 6px;
+}
+
+div.form-field-wrapper, div#ingredients-fields {
+    margin-top: 10px;
+}
+
+input#id_title {
+    width: 448px;
+    margin-right: 20px;
+}
+
+textarea#id_description, textarea#id_directions {
+    width: 480px;
+    height: 85px;
+    margin-right: 20px;
+    margin-top: 6px;
+}
+
+h1, h2 {
+    color: #555;
+    margin: 0;
+}
+
+div#recipe-detail h1 {
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+    float: left;
+}
+
+h2 {
+    font-size: 14pt;
+}
+
+div#recipe-detail-body {
+    width: 480px;
+}
+
+div#recipe-detail-directions {
+    margin-top: 10px;
+}
+
+div#recipe-image {
+    float: left;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+div#recipe-detail-body {
+    float: left;
+    margin-top: 10px;
+}
+
+div#recipe-detail-directions div, div#recipe-detail-description div {
+    margin-bottom: 6px;
+}
+
+div#recipe-detail-serves {
+    margin-top: 6px;
+}
+
+div#recipe-detail-ingredients {
+    margin-top: 6px;
+}
+
+div#recipe-detail-ingredients ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+div#recipe-detail-ingredients li, div#recipe-detail-ingredients ul {
+    margin-left: 10px;
+    padding-left: 0;
+    padding-top: 2px;
+}
+
+div#recipe-detail-ingredients li {
+    list-style-type: square;
+}

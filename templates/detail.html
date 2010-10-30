@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Cookiebook - {{ recipe.title }}{% endblock %}
+
+{% block body %}
+<div id='recipe-detail'>
+    <h1>{{ recipe.title }}</h1>
+    <div id='recipe-detail-body'>
+        <div id='recipe-detail-description'>
+            <div><label>Description:</label></div>
+            {{ recipe.description }}
+        </div>
+        {% if recipe.serves %}
+        <div id='recipe-detail-serves'>
+            <div><label>Serves: </label>{{ recipe.serves }}</div>
+        </div>
+        {% endif %}
+        <div id='recipe-detail-ingredients'>
+            <div><label>Ingredients:</label></div>
+            <ul>
+            {% for ingredient in recipe.ingredient_set %}
+                <li>{{ ingredient.description }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div id='recipe-detail-directions'>
+            <div><label>Directions:</label></div>
+            {{ recipe.directions }}
+        </div>
+    </div>
+    <div id='recipe-image'>
+        {% if recipe.picture %}
+            <img src='/image?img_id={{ recipe.key }}' width='200' />
+        {% endif %}
+    </div>
+    <div style='clear: both;'></div>
+    {% if show_edit_button %}
+    <div class='add-recipe-button'>
+        <input type='button' value='Edit this recipe' onClick='location.href = "/edit/{{ recipe.key }}/"' />
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

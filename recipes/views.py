@@ -1,26 +1,36 @@
 import cgi, os
 
-from google.appengine.api import users
+from google.appengine.api import images, users
+from google.appengine.ext import db
 
 from django import forms
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 
 from recipes.forms import *
+from recipes.models import *
 
 def image(request):
-    recipe = db.get(self.request.get('img_id'))
+    recipe = db.get(request.GET['img_id'])
 
     if recipe.picture:
-        self.response.headers['Content-Type'] = 'image/png'
-        self.response.out.write(recipe.picture)
+        response = HttpResponse(recipe.picture)
+        response['Content-Type'] = 'image/png'
+
+        return response
     else:
         self.error(404)
 
 @login_required
 def recipe_list(request):
-    recipe_list = Recipe.all().order('-published').fetch(50)
+    recipe_list = Recipe.all()
+
+    if 'query' in request.GET.keys():
+        for item in request.GET['query'].split(' '):
+            recipe_list = recipe_list.search(item)
+
+    recipe_list = recipe_list.order('-published').fetch(50)
 
     return render_to_response('index.html',
         {
@@ -41,8 +51,11 @@ def add_recipe(request):
                 added_by    = users.get_current_user()
             )
 
-            if 'picture' in form.cleaned_data.keys():
-                recipe.picture = form.cleaned_data['picture']
+            if 'picture' in request.FILES.keys():
+                picture_contents = request.FILES['picture'].read()
+                resized_image = images.resize(picture_contents, width=300)
+
+                recipe.picture = db.Blob(resized_image)
 
             recipe.put()
 
@@ -61,7 +74,7 @@ def add_recipe(request):
     return render_to_response('add_recipe.html',
         {
             'title': 'Add a recipe',
-            'form': RecipeForm(),
+            'form': form,
         })
 
 @login_required
@@ -89,6 +102,13 @@ def edit_recipe(request, recipe_id):
             recipe.description = form.cleaned_data['description']
             recipe.directions  = form.cleaned_data['directions']
             recipe.serves      = form.cleaned_data['serves']
+
+            if 'picture' in request.FILES.keys():
+                picture_contents = request.FILES['picture'].read()
+                resized_image = images.resize(picture_contents, width=300)
+
+                recipe.picture = db.Blob(resized_image)
+
             recipe.put()
 
             # Delete any ingredients we already have and rewrite them

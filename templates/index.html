@@ -3,11 +3,17 @@
 {% block title %}Cookiebook{% endblock %}
 
 {% block body %}
-<div class='add-recipe-button'>
+<div class='search-box'>
+    <form action='{% url recipes.views.recipe_list %}' method='GET'>
+        <input type='text' name='query' placeholder='Search' />
+        <input type='submit' name='submit' value='Search' />
+    </form>
+</div>
+<div id='add-recipe-top' class='add-recipe-button'>
     <input type='button' value='Add a recipe' onClick='location.href = "/recipe/add/"' />
 </div>
 <table id='recipe-list'>
-    <tr>
+    <tr class='subject-header'>
         <td>Title</td>
         <td>Description</td>
         <td>Added by</td>
@@ -30,7 +36,7 @@
     </tr>
 {% endfor %}
 </table>
-<div class='add-recipe-button'>
+<div id='add-recipe-bottom' class='add-recipe-button'>
     <input type='button' value='Add a recipe' onClick='location.href = "/recipe/add/"' />
 </div>
 

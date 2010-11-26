@@ -12,5 +12,7 @@ urlpatterns = auth_patterns + patterns('',
     (r'^recipe/add/$', 'recipes.views.add_recipe'),
     (r'^recipe/(?P<recipe_id>[^/]+)/$', 'recipes.views.recipe_detail'),
     (r'^recipe/(?P<recipe_id>[^/]+)/edit/$', 'recipes.views.edit_recipe'),
+    (r'^api/recipes/$', 'recipes.handler.recipe_list'),
+    (r'^image/$', 'recipes.views.image'),
 
 ) + urlpatterns

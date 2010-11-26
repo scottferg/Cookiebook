@@ -59,7 +59,7 @@ MIDDLEWARE_CLASSES = (
     'ragendja.middleware.ErrorMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # Django authentication
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'django.contrib.auth.middleware.AuthenticationMiddleware',
     # Google authentication
     'ragendja.auth.middleware.GoogleAuthenticationMiddleware',
     # Hybrid Django/Google authentication
@@ -82,13 +82,7 @@ LOGOUT_URL = '/account/logout/'
 LOGIN_REDIRECT_URL = '/'
 
 INSTALLED_APPS = (
-    # Add jquery support (app is in "common" folder). This automatically
-    # adds jquery to your COMBINE_MEDIA['combined-%(LANGUAGE_CODE)s.js']
-    # Note: the order of your INSTALLED_APPS specifies the order in which
-    # your app-specific media files get combined, so jquery should normally
-    # come first.
     'jquery',
-
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.admin',

@@ -1,23 +1,22 @@
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp.util import run_wsgi_app, login_required
-
+from django.core.serializers.json import DjangoJSONEncoder
+from django.utils.functional import wraps
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.utils import simplejson
 
 from recipes.models import *
 
-class RecipeListRPC(webapp.RequestHandler):
-    @login_required
-    def get(self):
-        recipe_list = Recipe.all().order('-published').fetch(50)
+def json_response(view):
+    def wrapper(request, *args, **kwargs):
+        data = view(request, *args, **kwargs)
 
-        self.response.out.write(simplejson.dumps([recipe.export_to_dict() for recipe in recipe_list]))
+        response = HttpResponse(simplejson.dumps(data, cls = DjangoJSONEncoder))
+        return response
+    return wraps(view)(wrapper)
 
-application = webapp.WSGIApplication([
-                                      (r'/api/recipes/$', RecipeListRPC),
-                                     ], debug = True)
+@login_required
+@json_response
+def recipe_list(self):
+    recipe_list = Recipe.all().order('-published').fetch(10)
 
-def main():
-    run_wsgi_app(application)
-
-if __name__ == '__main__':
-    main()
+    return [recipe.export_to_dict() for recipe in recipe_list]

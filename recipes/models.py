@@ -1,11 +1,12 @@
 from google.appengine.ext import db
+from google.appengine.ext import search
 
-class Recipe(db.Model):
+class Recipe(search.SearchableModel):
     title       = db.StringProperty()
-    description = db.StringProperty(multiline = True)
+    description = db.TextProperty()
     published   = db.DateTimeProperty(auto_now_add = True)
     picture     = db.BlobProperty()
-    directions  = db.StringProperty(multiline = True)
+    directions  = db.TextProperty()
     serves      = db.StringProperty()
     added_by    = db.UserProperty()
 
@@ -23,7 +24,3 @@ class Recipe(db.Model):
 class Ingredient(db.Model):
     recipe      = db.ReferenceProperty(Recipe)
     description = db.StringProperty()
-
-class Category(db.Model):
-    recipe   = db.ReferenceProperty(Recipe)
-    category = db.CategoryProperty()

@@ -3,7 +3,8 @@ body {
     font-size: .9em;
     background-color: #fff;
     margin: 0 auto;
-    width: 800px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 a {
@@ -14,6 +15,9 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+hr {
 }
 
 label {
@@ -31,15 +35,42 @@ div#header {
     margin-bottom: 10px;
 }
 
+div.search-box {
+	float: left;
+	margin-top: 4px;
+	margin-left: 4px;
+}
+
 div.add-recipe-button {
     width: 100%;
     text-align: right;
-    margin-top: 6px;
+}
+
+div#add-recipe-top {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ccc), to(#eee));
+    background: -moz-linear-gradient(100% 100% 90deg, #ccc, #eee);
+	border-top-left-radius: 6px 6px;
+	border-top-right-radius: 6px 6px;
+}
+
+div#add-recipe-bottom {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eee), to(#ccc));
+    background: -moz-linear-gradient(100% 100% 90deg, #eee, #ccc);
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+}
+
+div#add-recipe-top, div#add-recipe-bottom {
+	padding-bottom: 4px;
+	padding-top: 4px;
+}
+
+div.add-recipe-button input {
+	margin-right: 6px;
 }
 
 table#recipe-list {
     width: 100%;
-    margin-top: 6px;
     color: #444;
 }
 
@@ -53,9 +84,10 @@ table#recipe-list td {
 }
 
 div#recipe-change-form, div#recipe-detail {
-    width: 100%;
     border: 2px solid #ccc;
     padding: 10px;
+    width: 800px;
+    margin: 0 auto;
 }
 
 span.ingredient-add-link, span.ingredient-delete-link {
@@ -105,24 +137,26 @@ h2 {
     font-size: 14pt;
 }
 
-div#recipe-detail-body {
-    width: 480px;
-}
-
 div#recipe-detail-directions {
     margin-top: 10px;
 }
 
 div#recipe-image {
     float: left;
-    width: 200px;
+    width: 300px;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
+	text-align: center;
 }
 
 div#recipe-detail-body {
     float: left;
     margin-top: 10px;
+}
+
+div#recipe-detail-directions, div#recipe-detail-description, div#recipe-detail-ingredients, div#recipe-detail-serves {
+	padding-bottom: 6px;
+	border-bottom: 1px dashed #ccc;
 }
 
 div#recipe-detail-directions div, div#recipe-detail-description div {
@@ -143,11 +177,21 @@ div#recipe-detail-ingredients ul {
 }
 
 div#recipe-detail-ingredients li, div#recipe-detail-ingredients ul {
-    margin-left: 10px;
+    margin-left: 18px;
     padding-left: 0;
-    padding-top: 2px;
+    padding-top: 4px;
 }
 
 div#recipe-detail-ingredients li {
     list-style-type: square;
+}
+
+ul.errorlist {
+    color: red;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+ul.errorlist li {
+    list-style-type: none;
 }
